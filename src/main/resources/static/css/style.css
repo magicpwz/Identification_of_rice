@@ -1,0 +1,112 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-size: 14px;
+  	font-family:Microsoft Yahei,Verdana,Helvetica,Arial,sans-serif;
+}
+div#ksLeftNav {
+	position: fixed;
+	width: 190px;
+	float: left;
+	margin-top: 300px; 
+	margin: 0;
+	padding: 15px;
+}
+div#ksLeftNav * {
+	margin: 0;
+	padding: 0;
+}
+div#ksLeftNav div#nav-con {
+	position: relative;
+}
+ div#ksLeftNav div#nav-con ul.nav {
+	margin: 15px;
+	position: relative;
+	z-index: 2;
+}
+div#ksLeftNav div#nav-con ul.nav li {
+	list-style: none;
+}
+div#ksLeftNav div#nav-con ul.nav li a.nav-title {
+	display: inline-block;
+	text-decoration: none;
+	color: #333;
+	height: 36px;
+	line-height: 36px;
+	padding-left: 26px;
+	font-weight: bold;
+	background: url(../images/quan.png) left center no-repeat;
+}
+div#ksLeftNav div#nav-con ul.nav li a.nav-title.active {
+	color: #00bfe9;
+	background: url(../images/sign_right.png) 2px center no-repeat;
+}
+div#ksLeftNav div#nav-con div.nav-detail {
+}
+div#ksLeftNav div#nav-con div.nav-detail a {
+	display: block;
+	color: #666;
+	padding: 5px 15px 5px 40px;
+	text-decoration: none;
+}
+div#ksLeftNav div#nav-con div.nav-detail a.active {
+	color: #00bfe9;
+}
+div#ksLeftNav div#nav-con div.nav-detail a:hover {
+	text-decoration: none;
+}
+div#ksLeftNav div#nav-con div.line {
+	position: absolute;
+	top: 0;
+	left: 23px;
+	height: 100%;
+	width: 1px;
+	border-left: 1px solid #ccc;
+}
+div#ksLeftNav div#nav-con div.circle-top {
+	position: absolute;
+	top: -17px;
+	left: 17px;
+}
+div#ksLeftNav div#nav-con div.circle-bottom {
+	position: absolute;
+	bottom: -17px;
+	left: 17px;
+}
+
+div.right-con {
+	margin-top: 10px;
+    margin-left: 220px;
+    border-left: 3px solid #00BFE9;
+}
+div.right-con div.item {
+    padding: 15px;
+}
+div.right-con div.item  div {
+    padding: 15px 0;
+}
+div.right-con div.item h5 {
+    font-size: 24px;
+    color: #00BFE9;
+    padding-bottom: 10px;
+    border-bottom: 1px dotted #CCC;
+}
+div.right-con div.item p {
+    padding: 15px 0;
+    line-height: 25px;
+}
+
+
+.intro-img{
+	height: 200px;
+	margin-top: 20px;
+	margin-left: 100px;
+}
+
+.header_baike{
+	font-family:宋体;
+	font-weight:bold;
+	font-size:49px
+}

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" style="overflow-x: hidden; overflow-y: auto; ">
+<head>
+    <meta charset="UTF-8">
+    <title>稻草人-水稻病虫害防治系统-模板</title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <!-- 自定义目录下css -->
+    <link rel="stylesheet" th:href="@{/css/font.css}">
+    <link rel="stylesheet" th:href="@{/css/xadmin.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/xadmin.css}">
+    <!-- layui css -->
+    <link rel="stylesheet" th:href="@{/lib/layui/css/layui.css}">
+
+    <!-- layui admin css -->
+    <link rel="stylesheet" th:href="@{/lib/layuiadmin/lib/layui/css/layui.css}" media="all">
+    <link rel="stylesheet" th:href="@{/lib/layuiadmin/lib/layui/css/admin.css}" media="all">
+    <!-- <link rel="stylesheet" href="../static/lib/layuiadmin/lib/layui/css/layui_old.css" media="all"> -->
+    <link rel="stylesheet" th:href="@{/lib/layuiadmin/style/admin.css}" media="all">
+
+
+    <!-- 引用的js -->
+    <script type="text/javascript" th:src="@{https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js}"></script>
+    <script th:src="@{/lib/layui/layui.js}" charset="utf-8"></script>
+    <script type="text/javascript" th:src="@{/js/xadmin.js}"></script>
+
+    <!-- css of bootstrap 不需要就别乱引用,会导致出错-->
+
+    <!-- 		<link href="https://how2j.cn/study/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
+    <script src="https://how2j.cn/study/js/bootstrap/3.3.6/bootstrap.min.js"></script> -->
+
+
+</head>
+<body>
+
+<ul class="layui-nav" lay-filter="">
+    <li class="layui-nav-item"><img th:src="@{/images/four.png}" class="head-img"/></li>
+    <li class="layui-nav-item"><a href="/main">系统首页</a></li>
+    <li class="layui-nav-item"><a href="/pest_dict">虫害百科</a></li>
+    <li class="layui-nav-item"><a href="/pest_warn">虫害预警</a></li>
+    <li class="layui-nav-item">
+        <a href="javascript:;">用户主页</a>
+        <dl class="layui-nav-child">
+            <!-- 二级菜单 -->
+            <dd><a href="/user_center">用户信息</a></dd>
+            <dd><a href="">搜索记录</a></dd>
+            <dd><a href="/index">退出登录</a></dd>
+        </dl>
+    </li>
+    <li class="layui-nav-item"><a href="/user_comments">用户反馈</a></li>
+</ul>
+<!-- 顶部结束 -->
+
+
+<!-- 中部开始 -->
+
+
+<!-- 中部结束 -->
+<!-- 底部开始 -->
+<div class="footer">
+    <div class="copyright">Copyright ©2021 蜜雪冰城项目组 v2.3 All Rights Reserved</div>
+</div>
+<!-- 底部结束 -->
+<script>
+
+</script>
+</body>
+</html>

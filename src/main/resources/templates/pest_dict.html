@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" style="overflow-x: hidden; overflow-y: auto; ">
+<head>
+    <meta charset="UTF-8">
+    <title>稻草人-水稻病虫害防治系统-模板</title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/favicon.ico}"/>
+
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+
+    <!-- 自定义目录下css -->
+    <link rel="stylesheet" th:href="@{/css/font.css}">
+    <link rel="stylesheet" th:href="@{/css/xadmin.css}">
+    <!-- <link rel="stylesheet" href="../static/css/main.css"> -->
+    <link rel="stylesheet" th:href="@{/css/reset.css}">
+    <!-- layui css -->
+    <link rel="stylesheet" th:href="@{/lib/layui/css/layui.css}">
+
+    <!-- layui admin css -->
+    <link rel="stylesheet" th:href="@{/lib/layuiadmin/lib/layui/css/layui.css}" media="all">
+    <link rel="stylesheet" th:href="@{/lib/layuiadmin/lib/layui/css/admin.css}" media="all">
+    <!-- <link rel="stylesheet" href="../static/lib/layuiadmin/lib/layui/css/layui_old.css" media="all"> -->
+    <link rel="stylesheet" th:href="@{/lib/layuiadmin/style/admin.css}" media="all">
+
+    <!-- 引用的js -->
+    <script type="text/javascript" th:src="@{https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js}"></script>
+    <script th:src="@{/lib/layui/layui.js}" charset="utf-8"></script>
+    <script type="text/javascript" th:src="@{/js/xadmin.js}"></script>
+    <script type="text/javascript" th:src="@{/js/echarts.js}"></script>
+    <script type="text/javascript" th:src="@{/js/echarts.min.js}"></script>
+
+    <link th:href="@{https://how2j.cn/study/css/bootstrap/3.3.6/bootstrap.min.css}" rel="stylesheet">
+
+</head>
+<body background="/images/carousel/08.png">
+
+<ul class="layui-nav" lay-filter="">
+    <li class="layui-nav-item"><a href="/mainindex"><img th:src="@{/images/four.png}" class="head-img"/></a></li>
+    <li class="layui-nav-item"><a href="/main">系统首页</a></li>
+    <li class="layui-nav-item layui-this"><a href="/pest_dict">虫害百科</a></li>
+
+    <li class="layui-nav-item">
+        <a href="javascript:;">用户主页</a>
+        <dl class="layui-nav-child">
+            <!-- 二级菜单 -->
+            <dd><a href="/user_center">用户信息</a></dd>
+            <dd><a href="">搜索记录</a></dd>
+            <dd><a href="/index">退出登录</a></dd>
+        </dl>
+    </li>
+    <li class="layui-nav-item"><a href="/user_comments">用户反馈</a></li>
+</ul>
+<!-- 顶部结束 -->
+
+<!--<div class="search_bar clearfix">-->
+<!--    <div class="search_con fl">-->
+<!--        <span><input type="text" class="input_text fl" name="" placeholder="搜索病虫害"></span>-->
+<!--        <span><input type="button" class="input_btn fr" name="" value="搜索"></span>-->
+<!--    </div>-->
+
+<!--</div>-->
+<div class="main_wrap clearfix">
+
+
+    <div class="r_wrap fr clearfix">
+        <div class="sort_bar">
+            <a th:href="@{/pest_dict}">查看全部</a>
+            <a th:href="@{/pest_select(id=2)}">常见害虫</a>
+            <a th:href="@{/pest_select(id=1)}">常见病害</a>
+        </div>
+        <table style="margin-left: 40px; margin-top: 40px;    line-height: 40px;width: 85%">
+            <tbody>
+            <tr align="center" th:each="pest : ${session.pestlist}" class="panel panel-default" style="margin: 10px">
+                <td width="90">
+                    <div><a th:href="@{/pest_detail(pid=${pest.pestid})}"><img th:src="${pest.infourl}" width="180px"
+                                                                               style="margin: 15px;"></a>
+                    </div>
+                </td>
+                <td width="10"></td>
+                <td align="left">
+                    <ul>
+                        <li><strong style="font-size: 22px; font-family:'宋体';" th:text="${pest.name}">稻飞虱</strong></li>
+                        <li style="font-size: 12px;" th:text="${pest.content}">传播植物病毒病。以刺吸植株汁液危害水稻等作物。</li>
+                        <li><span style="font-weight:bold">·主要活跃地:</span><span th:text="${pest.place}">华南稻区、长江中下游稻区、西南稻区、黄淮稻区</span>
+                        </li>
+                        <li>
+                            <span style="font-weight:bold">·主要活跃时间:</span><span th:text="${pest.time}">9月上、中旬</span>
+                        </li>
+                    </ul>
+                </td>
+                <td width="10"></td>
+                <td width="100">
+                    <li class="layui-nav-item" th:if="${pest.kind == 2}">
+                        <img th:src="@{https://z3.ax1x.com/2021/07/28/WTexmR.png}"
+                             style="height: 40px;margin-left: 40px;margin-bottom: 130px"/>
+                    </li>
+                    <li class="layui-nav-item" th:if="${pest.kind == 1}">
+                        <img th:src="@{https://z3.ax1x.com/2021/07/28/WTYIvq.png}"
+                             style="height: 40px;margin-left: 40px;margin-bottom: 130px"/>
+                    </li>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="pagenation">
+            <a href="#">
+                <上一页
+            </a> <a href="#" class="active">1
+        </a>
+
+            <a href="#">下一页></a>
+        </div>
+    </div>
+</div>
+
+
+<!-- 中部开始 -->
+
+
+<!-- 中部结束 -->
+<!-- 底部开始 -->
+
+<!-- 底部结束 -->
+<script>
+
+</script>
+</body>
+</html>

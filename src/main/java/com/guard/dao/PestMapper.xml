@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.guard.dao.PestMapper" >
+  <resultMap id="BaseResultMap" type="com.guard.pojo.Pest" >
+    <id column="pestid" property="pestid" jdbcType="INTEGER" />
+    <result column="kind" property="kind" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="place" property="place" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="infourl" property="infourl" jdbcType="VARCHAR" />
+    <result column="info" property="info" jdbcType="VARCHAR" />
+    <result column="basic" property="basic" jdbcType="VARCHAR" />
+    <result column="bio" property="bio" jdbcType="VARCHAR" />
+    <result column="agr" property="agr" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    pestid, kind, name, place, time, content, infourl, info, basic, bio, agr
+  </sql>
+  <select id="listAll"  resultMap="BaseResultMap" >
+    SELECT * FROM pest
+    </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.guard.pojo.PestExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pest
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from pest
+    where pestid = #{pestid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from pest
+    where pestid = #{pestid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.guard.pojo.Pest" >
+    insert into pest (pestid, kind, name, 
+      place, time, content, 
+      infourl, info, basic, 
+      bio, agr)
+    values (#{pestid,jdbcType=INTEGER}, #{kind,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{place,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{infourl,jdbcType=VARCHAR}, #{info,jdbcType=VARCHAR}, #{basic,jdbcType=VARCHAR}, 
+      #{bio,jdbcType=VARCHAR}, #{agr,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.guard.pojo.Pest" >
+    insert into pest
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pestid != null" >
+        pestid,
+      </if>
+      <if test="kind != null" >
+        kind,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="place != null" >
+        place,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="infourl != null" >
+        infourl,
+      </if>
+      <if test="info != null" >
+        info,
+      </if>
+      <if test="basic != null" >
+        basic,
+      </if>
+      <if test="bio != null" >
+        bio,
+      </if>
+      <if test="agr != null" >
+        agr,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pestid != null" >
+        #{pestid,jdbcType=INTEGER},
+      </if>
+      <if test="kind != null" >
+        #{kind,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="place != null" >
+        #{place,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="infourl != null" >
+        #{infourl,jdbcType=VARCHAR},
+      </if>
+      <if test="info != null" >
+        #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="basic != null" >
+        #{basic,jdbcType=VARCHAR},
+      </if>
+      <if test="bio != null" >
+        #{bio,jdbcType=VARCHAR},
+      </if>
+      <if test="agr != null" >
+        #{agr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.guard.pojo.Pest" >
+    update pest
+    <set >
+      <if test="kind != null" >
+        kind = #{kind,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="place != null" >
+        place = #{place,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="infourl != null" >
+        infourl = #{infourl,jdbcType=VARCHAR},
+      </if>
+      <if test="info != null" >
+        info = #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="basic != null" >
+        basic = #{basic,jdbcType=VARCHAR},
+      </if>
+      <if test="bio != null" >
+        bio = #{bio,jdbcType=VARCHAR},
+      </if>
+      <if test="agr != null" >
+        agr = #{agr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pestid = #{pestid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.guard.pojo.Pest" >
+    update pest
+    set kind = #{kind,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      place = #{place,jdbcType=VARCHAR},
+      time = #{time,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      infourl = #{infourl,jdbcType=VARCHAR},
+      info = #{info,jdbcType=VARCHAR},
+      basic = #{basic,jdbcType=VARCHAR},
+      bio = #{bio,jdbcType=VARCHAR},
+      agr = #{agr,jdbcType=VARCHAR}
+    where pestid = #{pestid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" style="overflow-x: hidden; overflow-y: auto;background:#ffffff ">
+<head>
+    <meta charset="UTF-8">
+    <title>稻草人-水稻病虫害防治系统-模板</title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/favicon.ico}"/>
+
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <!-- 自定义目录下css -->
+    <link rel="stylesheet" th:href="@{/css/font.css}">
+    <link rel="stylesheet" th:href="@{/css/xadmin.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/xadmin.css}">
+    <!-- layui css -->
+    <link rel="stylesheet" th:href="@{/lib/layui/css/layui.css}">
+
+    <!-- layui admin css -->
+    <link rel="stylesheet" th:href="@{/lib/layuiadmin/lib/layui/css/layui.css}" media="all">
+    <link rel="stylesheet" th:href="@{/lib/layuiadmin/lib/layui/css/admin.css}" media="all">
+    <!-- <link rel="stylesheet" href="../static/lib/layuiadmin/lib/layui/css/layui_old.css" media="all"> -->
+    <link rel="stylesheet" th:href="@{/lib/layuiadmin/style/admin.css}" media="all">
+
+
+    <!-- 引用的js -->
+    <script type="text/javascript" th:src="@{https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js}"></script>
+    <script th:src="@{/lib/layui/layui.js}" charset="utf-8"></script>
+    <script type="text/javascript" th:src="@{/js/xadmin.js}"></script>
+    <script type="text/javascript" th:src="@{/js/nav.js}"></script>
+
+    <!-- css of bootstrap 不需要就别乱引用,会导致出错-->
+
+    <link th:href="@{https://how2j.cn/study/css/bootstrap/3.3.6/bootstrap.min.css}" rel="stylesheet">
+    <script th:src="@{https://how2j.cn/study/js/bootstrap/3.3.6/bootstrap.min.js}"></script>
+
+
+    <style>
+        .font_pest {
+            font-size: 17px
+        }
+    </style>
+
+</head>
+<body>
+
+<ul class="layui-nav" lay-filter="">
+    <li class="layui-nav-item"><a href="/mainindex"><img th:src="@{/images/four.png}" class="head-img"/></a></li>
+    <li class="layui-nav-item"><a href="/main">系统首页</a></li>
+    <li class="layui-nav-item layui-this"><a href="/pest_dict">虫害百科</a></li>
+    <li class="layui-nav-item">
+        <a href="javascript:;">用户主页</a>
+        <dl class="layui-nav-child">
+            <!-- 二级菜单 -->
+            <dd><a href="/user_center">用户信息</a></dd>
+            <dd><a href="">搜索记录</a></dd>
+            <dd><a href="/index">退出登录</a></dd>
+        </dl>
+    </li>
+    <li class="layui-nav-item"><a href="/user_comments">用户反馈</a></li>
+</ul>
+<!-- 顶部结束 -->
+
+
+<!-- 中部开始 -->
+
+<div id="ksLeftNav">
+    <div id="nav-con">
+        <div class="circle-top"><img></div>
+        <div class="line"></div>
+        <div class="circle-bottom"><img></div>
+        <ul class="nav" id="list">
+            <li>
+                <a href="#item1" class="nav-title">1 形态特征</a>
+                <div class="nav-detail">
+                    <a href="#item11">1.1 基本介绍</a>
+                    <a href="#item12">1.2 地理分布</a>
+                </div>
+            </li>
+            <li>
+                <a href="#item2" class="nav-title">2 主要危害</a>
+                <div class="nav-detail">
+                    <a href="#item21">2.1 基本情形</a>
+                </div>
+            </li>
+            <li>
+                <a href="#item3" class="nav-title">3 防治要点</a>
+                <div class="nav-detail">
+                    <a href="#item31">3.1 农业防治</a>
+                    <a href="#item32">3.2 生物防治</a>
+                </div>
+            </li>
+            <li>
+                <a href="#item4" class="nav-title">4 用户留言</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="layui-row">
+    <div class="layui-col-md3 layui-col-md-offset3 ">
+        <div class="grid-demo grid-demo-bg1" style="margin-top: 80px;">
+            <h2 class="header_baike" th:text="${session.smallpest.name}"> 稻飞虱</h2>
+        </div>
+        <div class="grid-demo grid-demo-bg1">
+            <h5> 学名：Nilaparvata lugens Stal</h5>
+        </div>
+    </div>
+    <div class="layui-col-md3 layui-col-md-offset1">
+        <div class="grid-demo layui-panel"><img th:src="${session.smallpest.infourl}" class="intro-img"></div>
+    </div>
+</div>
+
+
+<div class="right-con">
+    <div class="item" id="item1">
+        <h5>形态特征</h5>
+        <div id="item11">
+            <h3>基本介绍</h4>
+                <div class="font_pest" th:text="${session.smallpest.info}">
+                    稻飞虱，属于同翅目(Homoptera)飞虱科(Delphacidae)，俗称蠓子虫、火蠓虫、响虫。以刺吸植株汁液危害水稻等作物。我国为害水稻的飞虱主要有三种：褐飞虱 (Nilaparvata
+                    lugens
+                    Stal)、白背飞虱 (Sogatella furcifera (Horvath)) 和灰飞虱 (Laodelphax striatellus
+                    Fallén)，其中以褐飞虱发生和为害最重，白背飞虱次之。
+                </div>
+        </div>
+        <div id="item12">
+            <h3>地理分布</h3>
+            <div class="font_pest" th:text="${session.smallpest.place}">
+                3种飞虱在我国各省、自治区均有发生。
+                褐飞虱：为偏南方种类，在长江流域及其以南地区为害严重。
+                白背飞虱：为广跨偏南方的种类，为害性仅次于褐飞虱。
+                灰飞虱：为广跨偏北种类。
+            </div>
+        </div>
+        <div class="item" id="item2">
+            <h5>主要危害</h5>
+            <div id="item21">
+                <h3>基本情形</h3>
+                <div class="font_pest" th:text="${session.smallpest.basic}">
+                    褐飞虱食性单一，在自然情况下只取食水稻和普通野生稻；白背飞虱主要为害水稻，兼食大麦、小麦、粟、玉米、甘蔗、野生稻、早熟禾、高粱等；灰飞虱取食水稻、小麦、大麦、玉米、高粱、甘蔗等禾本科植物。成、若虫群集于稻丛下部刺吸汁液；雌虫产卵时，用产卵器刺破叶鞘和叶片，易使稻株失水或感染菌核病。排泄物常遭致霉菌滋生，影响水稻光合作用和呼吸作用，严重的稻株干枯、倒伏，甚至颗粒无收。严重制约了我区水稻生产的发展。因此做好稻飞虱的综合防治，对我区粮食生产意义重大。
+                </div>
+                <div class="font_pest">
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="item" id="item3">
+            <h5>防治要点</h5>
+            <div id="item31">
+                <h3>农业防治</h3>
+                <div class="font_pest" th:text="${session.smallpest.agr}">
+                    选育抗虫丰产水稻品种。如汕优10、汕优64等；在水稻生育期，要实行科学管理肥水：施肥要做到控氮、增钾、补磷；灌水要浅水勤灌，适时烤田，使
+                    田间通风透光，降低田间湿度，防止水稻贪青徒长。灰飞虱可结合冬季积肥，清除杂草，消灭越冬虫源。用抗虫品种，加强肥水管理，做到基肥足，追肥早，适期烤搁田，降低田间湿度，使水稻生长健壮，可明显减轻为害程度。
+                </div>
+            </div>
+            <div id="item32">
+                <h3>生物防治</h3>
+                <div style="font-size: 17px" th:text="${session.smallpest.bio}">
+                    在施药质量上，要做到四准一足两防治：一是要做到“四准”，即抓准时机、选准药剂、配准浓度、打准部位；二是要用足水量；三是要组建机防专业服务队，实行测报、开方、供药、施药一体化服务，尽量机械防治、统一防治。保护利用自然天敌，调整用药时间，改进施药方法，减少施药次数，用药量要合理，以减少对天敌的伤害，达到保护天敌的目的。其次，可采用草把助迁蜘蛛等措施，对防治飞虱有较好效果。治上压下，压前控后
+                    中稻在7月中下旬防治第三代褐飞虱以压低第四代基数，晚稻在8月下旬至9月上旬防治第四代褐飞虱以压低第五代基数，选用5%氟虫腈（锐劲特）悬浮剂30—40毫升/亩，或25%噻嗪酮（扑虱灵、优乐得）可湿粉50克/亩，或25%噻虫嗪（阿克泰）水分散剂2—3克/亩等长效性农药为主。
+                </div>
+            </div>
+        </div>
+        <div class="item" id="item4">
+            <h5>用户留言</h5>
+            <div id="item41">
+                <div class="font_pest">求求<h222 th:text="${session.smallpest.name}" style"></h222>饶了我家粮食吧。</div>
+            </div>
+        </div>
+
+
+        <!-- 中部结束 -->
+        <!-- 底部开始 -->
+
+        <!-- 底部结束 -->
+        <script>
+
+        </script>
+</body>
+</html>

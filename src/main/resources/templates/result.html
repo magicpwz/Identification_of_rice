@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" style="overflow-x: hidden; overflow-y: auto; ">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/favicon.ico}"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>识别结果</title>
+    <link rel="stylesheet" th:href="@{/lib/layui/css/layui.css}" media="all"/>
+    <link rel="stylesheet" th:href="@{/lib/layui/css/login.css}" media="all"/>
+    <style>
+        /* 覆盖原框架样式 */
+        .layui-elem-quote {
+            background-color: inherit !important;
+        }
+
+        .layui-input,
+        .layui-select,
+        .layui-textarea {
+
+            padding-left: 30px;
+        }
+
+        .mytopmm {
+            position: absolute;
+            top: 0px;
+            width: 100px;
+
+        }
+
+        .mytitle {
+            position: absolute;
+            height: 60px;
+            line-height: 80px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 0 0 0 20px;
+            color: #fff;
+            font-size: 18px;
+            background-repeat: no-repeat;
+            background-size: auto 60px;
+        }
+
+        img {
+            display: inline-block;
+            border: none;
+            height: 100%;
+            width: 100%;
+        }
+
+        .myphoto {
+            position: absolute;
+            right: 125px;
+            width: 24px;
+            height: 24px;
+            margin-top: 7.5px;
+            background: url(https://mms-graph.cdn.bcebos.com/activity/pc/camera.png) no-repeat;
+            background-size: contain;
+        }
+
+        .graph-header-bottom {
+            height: 140px;
+            background: #009f95;
+            color: #ababab;
+            display: block;
+            position: absolute;
+            width: 100%;
+            top: 15%;
+        }
+
+        .graph-header-bottom .graph-guess .graph-thumb-img {
+            position: absolute;
+            top: 36px;
+            left: 6%;
+            width: 129px;
+            height: 129px;
+
+            background-color: #3a3a3a;
+            background-size: 69px 22px;
+            background-position: 50%;
+            background-repeat: no-repeat;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        .graph-header-bottom .graph-guess-cont {
+            position: relative;
+            padding-top: 40px;
+            padding-left: 230px;
+            line-height: 32px;
+            font-size: 15px;
+            z-index: 1;
+        }
+
+        .graph-header-bottom .graph-guess-word {
+            max-width: 340px;
+            height: 32px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .graph-header-bottom .graph-guess-word span {
+            margin-left: 12px;
+        }
+
+        .graph-baike {
+            width: 100%;
+            min-width: 520px;
+            max-width: 880px;
+            margin: 0 auto 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .graph-baike-top {
+            display: block;
+            height: 112px;
+            position: absolute;
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .graph-baike-desc {
+            padding-top: 153px;
+            width: 100%;
+            max-height: 132px;
+            line-height: 33px;
+            text-align: left;
+            font-size: 17px;
+            overflow: hidden;
+            color: #737373;
+            word-break: break-all;
+        }
+
+        .graph-baike-img {
+            width: 112px;
+            height: 112px;
+            border-radius: 50%;
+            background-size: cover;
+            position: absolute;
+            left: 0;
+            z-index: 2;
+        }
+
+        .graph-baike-text {
+            font-size: 45px;
+            line-height: 112px;
+            height: 112px;
+            margin-left: 162px;
+            color: #000;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .graph-result-card {
+            position: absolute;
+            left: 20%;
+            top: 40%;
+        }
+
+        .graph-img-opacity1 {
+            width: 100%;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+<!-- Head -->
+
+<!-- Head End -->
+
+<!-- Carousel -->
+
+<!-- Carousel End -->
+
+<!-- Footer -->
+
+<!-- Footer End -->
+
+<div style="display: block">
+    <div class="mytopmm" style="top: 3%;">
+        <a href="/index"> <img th:src="@{/images/four.png}" width="270" height="100" class="head-img"> </a>
+    </div>
+    <!-- LoginForm -->
+    <div class="zyl_lofo_main2">
+                        <span>
+                        <input type="text" id="user" name="username" lay-verify="required|userName" autocomplete="off"
+                               placeholder="搜索" class="layui-input">
+                     <span class="myphoto" id="upload"></span>
+
+                  <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="login_btn"
+                          style="float: right">立即搜索</button>
+
+                        </span>
+    </div>
+</div>
+<div class="graph-header-bottom">
+    <div class="graph-container">
+        <div class="graph-guess">
+            <div class="graph-thumb-img"><!---->
+                <span th:style="'background-image: url(/images/carousel/02.jpg)'">
+
+                </span>
+                <img th:src="${session.preurl}" class="graph-img-opacity">
+            </div>
+            <div class="graph-guess-cont">
+                <div class="graph-guess-word">
+                    图中可能是<span th:text="${session.resultpest.name}">国产蓝妹啤酒</span>
+                </div>
+                <div class="graph-guess-size">
+                    <!---->  <!----></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="graph-result-card">
+    <div class="graph-baike">
+        <div class="graph-baike-top">
+            <a th:href="@{/pest_find(name=${session.resultpest.name})}" target="_blank">
+                <div class="graph-baike-img">
+                    <!---->
+                    <img class="graph-img-opacity1" th:src="${session.resultpest.infourl}"/>
+                </div>
+                <div class="graph-baike-text" th:text="${session.resultpest.name}">
+                    杨幂
+                </div>
+            </a>
+        </div>
+        <div class="graph-baike-desc">
+            <span th:text="${session.resultpest.content}">杨幂，1986年9月12日出生于北京市，中国内地影视女演员、流行乐歌手、影视制片人。2005年，杨幂进入北京电影学院表演系本科班就读。2006年，杨幂因出演金庸武侠剧《神雕侠侣》而崭露头角。2008年，她凭借古装剧《王昭君》获得了第24届中国电视金鹰奖观众喜爱的电视剧女演员奖提名。2009年，杨幂在“80后新生代娱乐大明星”评选活动中与其她三位女演员共同被评为“四小花旦”。2011年，杨幂凭借穿...</span>
+        </div>
+        <a class="graph-baike-more graph-more-icon" th:href="@{/pest_find(name=${session.resultpest.name})}">
+            查看更多信息
+            <em></em>
+        </a>
+    </div>
+</div>
+<!-- LoginForm End -->
+
+<!-- Footer -->
+
+<!-- Footer End -->
+<!-- Jquery Js -->
+<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+<!-- Layui Js -->
+<script type="text/javascript" th:src="@{/lib/layui/layui.js}"></script>
+<!-- Jqarticle Js -->
+<script type="text/javascript" th:src="@{/assembly/jqarticle/jparticle.min.js}"></script>
+<!-- ZylVerificationCode Js-->
+<script type="text/javascript" th:src="@{/assembly/zylVerificationCode/zylVerificationCode.js}"></script>
+<script>
+
+
+    // //监听轮播--案例暂未使用
+    // carousel.on('change(zyllogin)', function (obj) {
+    //     var loginCarousel = obj.index;
+    // });
+
+
+</script>
+
+<!--				上传文件js代码-->
+<script>
+    // var param = $.cookie("a");
+    // document.getElementById("phot").src = param;
+    // layui.use(["layer","form", "upload","jquery","element"], function () {
+    //     // 注意：为了动态显示进度条，必须加载element组件
+    //     var layer = layui.layer, upload = layui.upload, $ = layui.jquery, element = layui.element;
+    //
+    //     upload.render({
+    //         accept : "file",
+    //         elem : "#addFile",
+    //         auto : false,   //关闭文件自动上传
+    //         bindAction : "#upload", //文件上传触发按钮
+    //         url : "upload",
+    //         progress:function(value){//上传进度回调 value进度值
+    //             element.progress('uploadProgressBar', value+'%')//设置页面进度条
+    //         },
+    //         before : function (obj) {
+    //
+    //             /* var intId = setInterval(function () {
+    //                  getUploadStatus(intId);
+    //              }, 1000); //每秒向服务端获取一次当前上传进度情况*/
+    //         },
+    //         done : function (res, index, upload) {
+    //             if(res.code != 200){
+    //                 layer.open({
+    //                     icon : 2,
+    //                     skin : "layui-layer-molv",
+    //                     content : res.msg
+    //                 });
+    //             }
+    //         },
+    //         error : function (res) {
+    //
+    //         }
+    //     });
+    // });
+    layui.use(['upload', 'element', 'layer'], function () {
+        var $ = layui.jquery
+            , upload = layui.upload
+            , element = layui.element
+            , layer = layui.layer;
+
+        //常规使用 - 普通图片上传
+        var uploadInst = upload.render({
+            elem: '#upload'
+            , url: 'upload' //改成您自己的上传接口
+            , before: function (obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#demo1').attr('src', test_t); //图片链接（base64）
+                });
+
+                element.progress('demo', '0%'); //进度条复位
+                   layer.msg('上传中', {icon: 16, time: 0});
+            }
+            , done: function (res) {
+                //如果上传失败
+                if (res.code != 200) {
+                    return layer.msg('上传失败');
+                } else {
+                    window.location.href = '/result';
+                }
+                //上传成功的一些操作
+                //……
+                $('#demoText').html(''); //置空上传失败的状态
+            }
+            , error: function () {
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function () {
+                    uploadInst.upload();
+                });
+            }
+            //进度条
+            , progress: function (n, elem, e) {
+                element.progress('demo', n + '%'); //可配合 layui 进度条元素使用
+                if (n == 100) {
+                    layer.msg('上传完毕', {icon: 1});
+                }
+            }
+        });
+    });
+</script>
+
+</body>
+
+</html>

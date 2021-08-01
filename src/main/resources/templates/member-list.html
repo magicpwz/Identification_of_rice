@@ -1,0 +1,284 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后台登录-稻草人</title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/favicon.ico}"/>
+
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon"/>
+    <link rel="stylesheet" th:href="@{/css/font.css}">
+    <link rel="stylesheet" th:href="@{/css/xadmin.css}">
+    <script type="text/javascript" th:src="@{https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js}"></script>
+    <script th:src="@{/lib/layui/layui.js}" charset="utf-8"></script>
+    <script type="text/javascript" th:src="@{/js/xadmin.js}"></script>
+
+
+    <script>
+        layui.use('laypage', function () {
+            var laypage = layui.laypage;
+
+            //执行一个laypage实例
+            laypage.render({
+                elem: 'test1' //注意，这里的 test1 是 ID，不用加 # 号
+                , count: 10 //数据总数，从服务端得到
+            });
+        });
+    </script>
+</head>
+<body>
+<!-- 顶部开始 -->
+<div class="container">
+    <div class="logo"><a href="/index">X-admin v2.0</a></div>
+    <div class="left_open">
+        <i title="展开左侧栏" class="iconfont">&#xe699;</i>
+    </div>
+
+    <ul class="layui-nav right" lay-filter="">
+        <li class="layui-nav-item">
+            <a href="javascript:;">admin</a>
+            <dl class="layui-nav-child">
+                <!-- 二级菜单 -->
+                <dd><a onclick="x_admin_show('个人信息','http://www.baidu.com')">个人信息</a></dd>
+                <dd><a onclick="x_admin_show('切换帐号','http://www.baidu.com')">切换帐号</a></dd>
+                <dd><a href="/admin-login">退出</a></dd>
+            </dl>
+        </li>
+
+    </ul>
+
+</div>
+<!-- 顶部结束 -->
+<!-- 中部开始 -->
+<!-- 左侧菜单开始 -->
+<div class="left-nav">
+    <div id="side-nav">
+        <ul id="nav">
+
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe6b8;</i>
+                    <cite>用户管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="/member-list">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>用户列表</cite>
+
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/member-add">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>用户新增</cite>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe705;</i>
+                    <cite>病虫害管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="/pest-list">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>病虫害列表</cite>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/pest-add">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>更新病虫害</cite>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe6b2;</i>
+                    <cite>评论管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="/comment-list">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>评论列表</cite>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+        </ul>
+    </div>
+</div>
+<!-- 顶部结束 -->
+<!-- 中部开始 -->
+<!-- 左侧菜单开始 -->
+<div class="left-nav">
+    <div id="side-nav">
+        <ul id="nav">
+
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe6b8;</i>
+                    <cite>用户管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="/member-list">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>用户列表</cite>
+
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe705;</i>
+                    <cite>病虫害管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="/pest-list">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>病虫害列表</cite>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe6b2;</i>
+                    <cite>评论管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="/comment-list">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>评论列表</cite>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+        </ul>
+    </div>
+</div>
+<!-- <div class="x-slide_left"></div> -->
+<!-- 左侧菜单结束 -->
+<!-- 右侧主体开始 -->
+<div class="page-content">
+    <div class="layui-tab tab" lay-filter="xbs_tab" lay-allowclose="false">
+        <ul class="layui-tab-title">
+            <li>用户列表</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+
+
+                <!--     <iframe src='./welcome.html' frameborder="0" scrolling="yes" class="x-iframe"></iframe> -->
+                <!-- 把代码添加到这个div里面 -->
+                <div class="x-body">
+                    <div class="layui-row">
+                        <form class="layui-form layui-col-md12 x-so">
+                            <input class="layui-input" placeholder="开始日" name="start" id="start">
+                            <input class="layui-input" placeholder="截止日" name="end" id="end">
+                            <input type="text" name="username" placeholder="请输入用户名" autocomplete="off"
+                                   class="layui-input">
+                            <button class="layui-btn" lay-submit="" lay-filter="sreach"><i
+                                    class="layui-icon">&#xe615;</i></button>
+                        </form>
+                    </div>
+
+                    <table class="layui-table">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>用户名</th>
+                            <th>密码</th>
+                            <th>手机</th>
+                            <th>邮箱</th>
+                            <th>启用</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody th:each="user:${session.userlist}">
+                        <tr>
+                            <td th:text="${user.userid}">1</td>
+                            <td th:text="${user.username}">小明</td>
+
+                            <td th:text="${user.password}">123456</td>
+                            <td th:text="${user.phone}">13000000000</td>
+                            <td th:text="${user.email}">admin@mail.com</td>
+                            <td class="td-status">
+                                <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td>
+                            <td class="td-manage">
+                                <a onclick="member_stop(this,'10001')" href="javascript:;" title="启用">
+                                    <i class="layui-icon">&#xe601;</i>
+                                </a>
+                                <a title="编辑" href="javascript:;">
+                                    <i class="layui-icon">&#xe642;</i>
+                                </a>
+                                <a title="修改密码" href="javascript:;">
+                                    <i class="layui-icon">&#xe631;</i>
+                                </a>
+                                <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
+                                    <i class="layui-icon">&#xe640;</i>
+                                </a>
+                            </td>
+
+
+                        </tr>
+
+                        </tbody>
+                    </table>
+                    <div class="page">
+                        <div>
+                            <a th:href="@{'member-list?start=1'}">[首 页]</a>
+                            <a class="prev" th:href="@{'member-list?start='+${pre}}">[上一页]</a>
+
+                            <a class="next" th:href="@{'member-list?start='+${next}}">[下一页]</a>
+                            <a th:href="@{'member-list?start='+${last}}">[末 页]</a>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="page-content-bg"></div>
+<!-- 右侧主体结束 -->
+<!-- 中部结束 -->
+<!-- 底部开始 -->
+
+<!-- 底部结束 -->
+
+
+</body>
+</html>

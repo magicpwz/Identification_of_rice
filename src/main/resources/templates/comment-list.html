@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" style="overflow-x: hidden; overflow-y: auto; ">
+<head>
+    <meta charset="UTF-8">
+    <title>后台登录-稻草人</title>
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/favicon.ico}"/>
+
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+    <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon"/>
+    <link rel="stylesheet" th:href="@{/css/font.css}">
+    <link rel="stylesheet" th:href="@{/css/xadmin.css}">
+    <script type="text/javascript" th:src="@{https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js}"></script>
+    <script th:src="@{/lib/layui/layui.js}" charset="utf-8"></script>
+    <script type="text/javascript" th:src="@{/js/xadmin.js}"></script>
+
+</head>
+<body>
+<!-- 顶部开始 -->
+<div class="container">
+    <div class="logo"><a href="/index">X-admin v2.0</a></div>
+    <div class="left_open">
+        <i title="展开左侧栏" class="iconfont">&#xe699;</i>
+    </div>
+
+    <ul class="layui-nav right" lay-filter="">
+        <li class="layui-nav-item">
+            <a href="javascript:;">admin</a>
+            <dl class="layui-nav-child">
+                <!-- 二级菜单 -->
+                <dd><a onclick="x_admin_show('个人信息','http://www.baidu.com')">个人信息</a></dd>
+                <dd><a onclick="x_admin_show('切换帐号','http://www.baidu.com')">切换帐号</a></dd>
+                <dd><a href="/admin-login">退出</a></dd>
+            </dl>
+        </li>
+
+    </ul>
+
+</div>
+<!-- 顶部结束 -->
+<!-- 中部开始 -->
+<!-- 左侧菜单开始 -->
+<div class="left-nav">
+    <div id="side-nav">
+        <ul id="nav">
+
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe6b8;</i>
+                    <cite>用户管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="/member-list">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>用户列表</cite>
+
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/member-add">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>用户新增</cite>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe705;</i>
+                    <cite>病虫害管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="/pest-list">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>病虫害列表</cite>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/pest-add">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>更新病虫害</cite>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe6b2;</i>
+                    <cite>评论管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="/comment-list">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>评论列表</cite>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+        </ul>
+    </div>
+</div>
+<!-- <div class="x-slide_left"></div> -->
+<!-- 左侧菜单结束 -->
+<!-- 右侧主体开始 -->
+<div class="page-content">
+    <div class="layui-tab tab" lay-filter="xbs_tab" lay-allowclose="false">
+        <ul class="layui-tab-title">
+            <li>评论列表</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+
+
+                <!-- 把代码添加到这个div里面 -->
+                <div class="x-body">
+                    <!--          <div class="layui-row">-->
+                    <!--            <form class="layui-form layui-col-md12 x-so">-->
+                    <!--              <input class="layui-input" placeholder="开始日" name="start" id="start">-->
+                    <!--              <input class="layui-input" placeholder="截止日" name="end" id="end">-->
+                    <!--              <input type="text" name="username"  placeholder="请输入用户名" autocomplete="off" class="layui-input">-->
+                    <!--              <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>-->
+                    <!--            </form>-->
+                    <!--          </div>-->
+                    <table class="layui-table">
+                        <thead>
+                        <tr>
+                            <th>
+                                <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i
+                                        class="layui-icon">&#xe605;</i></div>
+                            </th>
+                            <th>评论编号</th>
+                            <th>用户名</th>
+                            <th>评论内容</th>
+                            <th>用户ID</th>
+                            <th>用户头像</th>
+                            <th>评论时间</th>
+                            <th>管理员回复</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody th:each="var:${session.list}">
+                        <tr>
+                            <td>
+                                <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i
+                                        class="layui-icon">&#xe605;</i></div>
+                            </td>
+                            <td th:text="${var.cid}">1</td>
+                            <td th:text="${var.name}">NULL</td>
+                            <td th:text="${var.content}">NULL</td>
+                            <td th:text="${var.userid}">NULL</td>
+                            <td><img th:src="${var.headimg}"></td>
+                            <td th:text="${#dates.format(var.ctime)}">2017-01-01 11:11:42</td>
+                            <td>
+                                <form th:if="${var.reply == null}" th:action="@{/reply_comment(cid=${var.cid})}"
+                                      th:object="${comment}" method="post">
+                                <span>
+                                     <textarea name="reply" placeholder="请输入内容" class="layui-textarea"
+                                               th:value="${var.reply}" style="width: auto"></textarea>
+                                   <button class="layui-btn layui-btn-normal" lay-submit>立即提交</button></span>
+                                </form>
+                                <div th:if="${var.reply}"><p th:text="${var.reply}"></p></div>
+                            </td>
+                            <td class="td-manage">
+                                <!--                                <a onclick="member_stop(this,'10001')" href="javascript:;" title="启用">-->
+                                <!--                                    <i class="layui-icon">&#xe601;</i>-->
+                                <!--                                </a>-->
+                                <!--                                <a title="编辑" onclick="x_admin_show('编辑','member-edit.html',600,400)"-->
+                                <!--                                   href="javascript:;">-->
+                                <!--                                    <i class="layui-icon">&#xe642;</i>-->
+                                <!--                                </a>-->
+                                <!--                                <a onclick="x_admin_show('修改密码','member-password.html',600,400)" title="修改密码"-->
+                                <!--                                   href="javascript:;">-->
+                                <!--                                    <i class="layui-icon">&#xe631;</i>-->
+                                <!--                                </a>-->
+                                <a title="删除" th:href="@{/delete_comment(cid=${var.cid})}">
+                                    <i class="layui-icon">&#xe640;</i>
+                                </a>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                    <div class="page">
+                        <div>
+                            <a th:href="@{'comment-list?start=1'}">[首 页]</a>
+                            <a class="prev" th:href="@{'comment-list?start='+${pre}}">[上一页]</a>
+
+                            <a class="next" th:href="@{'comment-list?start='+${next}}">[下一页]</a>
+                            <a th:href="@{'comment-list?start='+${last}}">[末 页]</a>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="page-content-bg"></div>
+<!-- 右侧主体结束 -->
+<!-- 中部结束 -->
+<!-- 底部开始 -->
+<!--    <div class="footer">-->
+<!--        <div class="copyright">Copyright ©2017 x-admin v2.3 All Rights Reserved</div>  -->
+<!--    </div>-->
+<!-- 底部结束 -->
+</body>
+</html>

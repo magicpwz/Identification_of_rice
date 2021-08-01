@@ -1,0 +1,118 @@
+/* 把标签默认的间距设为0 */
+body,ul,ol,p,h1,h2,h3,h4,h5,h6,dl,dd,select,input,textarea,form{margin:0;padding:0}
+
+/* 让h标签文字大小继承body的文字设置 */
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+
+/* 去掉列表默认的图标 */
+ul,ol{list-style:none;}
+
+/* 去掉em默认的斜体 */
+em{font-style: normal;}
+
+/* 去掉a标签默认的下划线 */
+a{text-decoration:none;}
+
+
+/* 去掉加链接时产生的框线 */
+img{border:0;}
+
+/* 清除浮动 */
+.clearfix:before,.clearfix:after{content:"";display:table}
+.clearfix:after{clear:both;}
+.clearfix{zoom:1}
+
+/* 浮动 */
+.fl{float:left}
+.fr{float:right}
+
+
+/*评论区专用css*/
+
+.content {
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, .2);
+    padding: 20px 30px;
+    margin-top: 50px;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+.content .title {
+    padding: 10px;
+}
+
+.yd-wrap {
+    padding: 15px;
+    border: 1px solid #f0f0f0;
+    border-radius: 5px;
+}
+.rt{float:right}
+.yd-header input{
+    border-bottom: 1px dashed #dedede;
+
+}
+.yd-header input:focus{
+    border-color: #eb5055;
+}
+
+.yd-textarea textarea {
+    height: 10rem;
+}
+
+.yd-commit button {
+    width: 100px;
+	background-color: blue;
+	color: white;
+}
+
+.yd-comment-num span{
+    font-size: 20px;
+    font-weight: 800;
+    font-family: bold;
+}
+
+.yd-comment-item img {
+    width: 50px;
+}
+
+.yd-comment-content a {
+    font-weight: 600;
+}
+
+.yd-comment-head {
+    margin-bottom: 5px;
+}
+
+.yd-comment-body {
+    margin-bottom: 10px;
+}
+
+.yd-comment-footer {
+    color: #b3b3b3;
+    border-bottom: 1px solid #f5f5f5;
+}
+.container {
+    max-width: 1080px;
+}
+.market {
+    background-color: #4285f4;
+    height: 398px;
+    position: absolute;
+    top: 60px;
+    width: 100%;
+    outline: none;
+    display: block;
+    z-index: -1;
+}
+.row {
+    margin-bottom: 0.75rem;
+
+}
+
+input, textarea{
+    resize: none;
+    outline: none;
+    border: none;
+    width: 100%;
+    margin: 10px px;
+    border-bottom: 1px dashed #dedede;
+}
